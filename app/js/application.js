@@ -1,0 +1,1 @@
+window.Batch = Ember.Application.create();
