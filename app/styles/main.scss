@@ -3,4 +3,103 @@
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
 // Custom Styles
-// 
+
+body, html {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+header {
+  @include fill-parent;
+  // background: #8AB8E5;
+  padding: 20px 0;
+  border-bottom: 3px solid #3D6C99;
+
+  span {
+   margin-left: 40px;
+  }
+
+  h1 {
+    display: inline;
+    margin-left: 400px;
+    vertical-align: middle; 
+  }
+
+  button {
+    float: right;
+    margin-top: 10px;
+    margin-right: 40px;
+  }
+
+}
+
+.main {
+  @include fill-parent;
+  height: 100%;
+
+  .side-bar {
+    @include span-columns(2);
+    background: #E5C38A;
+    height: 100vh;
+    border-right: 3px solid #3D6C99;
+    
+    .cool {
+      height: 80px;
+    }
+
+    .cool:hover {
+      background: #8AB8E5;
+    }
+
+    li {
+      padding-top: 30px;
+      padding-left: 30px;
+
+
+    }
+
+  }
+
+  .recipes {
+    @include span-columns(10);
+    // background: green;
+    // height: 200px;
+    height: 100vh;
+    overflow: scroll;
+
+
+    .rec-container {
+      @include span-columns(2);
+      margin-top: 20px;
+      margin-bottom: 50px;
+      height: 150px;
+      background: #999;
+    }
+
+  }
+
+}
+
+.view-all {
+  float: right;
+  margin-right: 200px;
+}
+
+.yes {
+  margin-top: 30px;
+  clear: both;
+}
+
+.yup {
+  margin-left: 100px;
+}
