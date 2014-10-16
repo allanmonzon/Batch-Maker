@@ -11,7 +11,9 @@
     "handlebars": "1.0.0",
     "ember": "1.3",
     "ember-data": "1.0.0-beta.8",
-    "emberfire": "~1.2.7"
+    "emberfire": "~1.2.7",
+    "refills": "~0.0.2",
+    "bitters": "~0.10.1"
   },
   "resolutions": {
     "jquery": "1.10.2",

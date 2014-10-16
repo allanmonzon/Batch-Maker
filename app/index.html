@@ -23,92 +23,266 @@
   </head>
   <body>
 
-   
     <script type="text/x-handlebars" data-template-name="application">
+      <header>
+        <span>The kitchen is yours, chef!</span>
+        {{#link-to 'index'}}<h1>Batch Maker</h1>{{/link-to}}
+        <button>sign out</button>
+      </header>
 
-    <header>
-      <span>The kitchen is yours, chef!</span>
-      {{#link-to 'index'}}<h1>Batch Maker</h1>{{/link-to}}
-      <button>sign out</button>
-    </header>
+      <div class="main">
+        <div class="side-bar">
+          <ul>
+            {{#link-to 'my-recipes'}}<div class="cool"><li>My Recipes</li></div>{{/link-to}}<hr>
+            {{#link-to 'public-recipes'}}<div class="cool"><li>Public Recipes</li></div>{{/link-to}}<hr>
+            {{#link-to 'popular-recipes'}}<div class="cool"><li>Popular Recipes</li></div>{{/link-to}}<hr>
+            {{#link-to 'my-favorite-recipes'}}<div class="cool"><li>My Favorite Recipes</li></div>{{/link-to}}<hr>
+            {{#link-to 'my-pantry'}}<div class="cool"><li>My Pantry</li></div>{{/link-to}}<hr>
+          </ul>
+        </div>
+        <div class="recipes">
+          {{outlet}}
+        </div>
+      </div>
+    </script>
+  
+  
 
-    <div class="main">
-      <div class="side-bar">
-        <ul>
-          {{#link-to 'my-recipes'}}<div class="cool"><li>My Recipes</li></div>{{/link-to}}
-          {{#link-to 'public-recipes'}}<div class="cool"><li>Public Recipes</li></div>{{/link-to}}
-          {{#link-to 'popular-recipes'}}<div class="cool"><li>Popular Recipes</li></div>{{/link-to}}
-          {{#link-to 'my-favorite-recipes'}}<div class="cool"><li>My Favorite Recipes</li></div>{{/link-to}}
-          {{#link-to 'my-pantry'}}<div class="cool"><li>My Pantry</li></div>{{/link-to}}
-        </ul>
-      </div>
-      <div class="recipes">
-       
-        {{outlet}}
-      </div>
-    </div>
+    <script type="text/x-handlebars" data-template-name="recipes">  
+      {{outlet}}    
     </script>
 
-    <script type="text/x-handlebars" data-template-name="my-recipes">
-      <h1>My Recipes!</h1>
+    <script type="text/x-handlebars" data-template-name="recipes/create">
+      <div class="create">
+        <h3>Basic Info</h3>
+        <div class="create-img"></div>
+        <div class="inp">
+          <input type="text" class="create-inp" placeholder="Recipe Name">            
+          <input type="text" class="create-inp" placeholder="By">
+          <div class="checkboxes">
+            <label class="create-check"><input type="checkbox">Make it Public</label>
+            <label class="create-check"><input type="checkbox">Keep it Private</label>
+          </div>
+        </div>
+      </div> 
+    </script>
+
+
+
+
+
+    <script type="text/x-handlebars" data-template-name="index">
+      <div class="yup">
+        <div class="yes"><span>My Recipes</span><span class="view-all">View all ></span></div>
+        {{#link-to 'recipes.create'}}<div class="rec-container"></div>{{/link-to}}
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="yes"><span>Public Recipes</span><span class="view-all">View all ></span></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="yes"><span>Popular Recipes</span><span class="view-all">View all ></span></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="yes"><span>My Favorite Recipes</span><span class="view-all">View all ></span></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="yes"><span>My Pantry</span><span class="view-all">View all ></span></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div> 
+      </div>
+    </script>
+
+
+    <script type="text/x-handlebars" data-template-name="my-recipes">  
+      <div class="yup">
+        <div class="yes"><span>My Recipes</span></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+  
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div> 
+      </div>  
     </script>
 
 
     <script type="text/x-handlebars" data-template-name="public-recipes">
-      <h1>Public Recipes!</h1>
+       <div class="yup">
+        <div class="yes"><span>Public Recipes</span></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+  
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div> 
+      </div>
     </script>
 
 
     <script type="text/x-handlebars" data-template-name="popular-recipes">
-      <h1>Popular Recipes!</h1>
+       <div class="yup">
+        <div class="yes"><span>Popular Recipes</span></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+  
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div> 
+      </div>
     </script>
 
 
     <script type="text/x-handlebars" data-template-name="my-favorite-recipes">
-      <h1>My Favorite Recipes!</h1>
+       <div class="yup">
+        <div class="yes"><span>My Favorite Recipes</span></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+  
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div> 
+      </div>
     </script>
 
 
     <script type="text/x-handlebars" data-template-name="my-pantry">
-      <h1>My Pantry!</h1>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="index">
-    <div class="yup">
-      <div class="yes"><span>My Recipes</span><span class="view-all">View all</span></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="yes"><span>Public Recipes</span><span class="view-all">View all</span></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="yes"><span>Popular Recipes</span><span class="view-all">View all</span></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="yes"><span>My Favorite Recipes</span><span class="view-all">View all</span></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="yes"><span>My Pantry</span><span class="view-all">View all</span></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div>
-      <div class="rec-container"></div> 
+       <div class="yup">
+        <div class="yes"><span>My Pantry</span></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+  
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div>
+        <div class="rec-container"></div> 
       </div>
     </script>
+
+
     
 
+
+  
+
+ 
 
 
     <!-- build:js js/vendor.js -->

@@ -1,11 +1,13 @@
  // Bourbon & Neat
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
+@import '../../bower_components/bitters/app/assets/stylesheets/base';
 
 // Custom Styles
 
-body, html {
+body {
   margin: 0;
+  // background: url("/images/img1.jpeg");
 }
 
 ul {
@@ -17,6 +19,12 @@ ul {
 a {
   text-decoration: none;
   color: #333;
+}
+
+hr {
+  width: 30%;
+  margin-top: 0;
+  margin-left: 50px; 
 }
 
 header {
@@ -49,7 +57,7 @@ header {
 
   .side-bar {
     @include span-columns(2);
-    background: #E5C38A;
+    // background: #E5C38A;
     height: 100vh;
     border-right: 3px solid #3D6C99;
     
@@ -64,8 +72,6 @@ header {
     li {
       padding-top: 30px;
       padding-left: 30px;
-
-
     }
 
   }
@@ -103,3 +109,48 @@ header {
 .yup {
   margin-left: 100px;
 }
+
+
+////////// Create
+
+.create {
+  @include span-columns(9);
+  @include shift(1);
+  // background: blue;
+  height: 100px;
+  padding-top: 20px;
+
+  .create-img {
+    @include span-columns(3);
+    background: #bfbfbf;
+    height: 150px;
+  }
+
+  .inp {
+    @include span-columns(9);
+
+    .create-inp {
+      @include span-columns(9);
+      padding: 16px;
+    }
+
+    .checkboxes {
+      @include span-columns(9);
+
+      .create-check {
+        margin-right: 20px;
+        display: inline;
+        font-weight: normal;
+      }
+
+    }
+
+  }
+
+}
+
+
+
+
+
+
