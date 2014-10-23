@@ -117,8 +117,9 @@ header {
   @include span-columns(9);
   @include shift(1);
   // background: blue;
-  height: 100px;
+  // height: 100px;
   padding-top: 20px;
+  padding-left: 150px;
 
   .create-img {
     @include span-columns(3);
@@ -147,7 +148,34 @@ header {
 
   }
 
+  .yield {
+    @include span-columns(12);
+    margin-top: 20px;
+    // height: 100px;
+    // background: blue;  
+
+    span {
+      float: left;
+      margin-right: 10px;
+    }
+
+    input{
+      @include span-columns(2);  
+    }
+
+    .scones {
+      @include span-columns(6);
+    }
+
+  }
+
 }
+
+
+
+
+
+
 
 
 
