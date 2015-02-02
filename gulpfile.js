@@ -8,6 +8,8 @@ var rimraf = require('rimraf');
 var exec = require('child_process').exec;
 var prompt = require('gulp-prompt');
 var useref = require('gulp-useref');
+var gulpif = require('gulp-if');
+var gulpcsso = require('gulp-csso');
 
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
@@ -17,7 +19,7 @@ gulp.task('styles', function () {
       precision: 10
     }))
     .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('.tmp/styles'));
+    .pipe(gulp.dest('dist/styles'));
 });
 
 gulp.task('html', ['styles'], function () {
@@ -25,7 +27,7 @@ gulp.task('html', ['styles'], function () {
 
   return gulp.src('app/*.html')
     .pipe(assets)
-    .pipe($.if('*.css', $.csso()))
+    .pipe(gulpif('*.css', gulpcsso()))
     .pipe(assets.restore())
     .pipe(useref())
     .pipe(gulp.dest('dist'));
