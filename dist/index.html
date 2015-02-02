@@ -1,0 +1,429 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+  <title>Batch Maker</title>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <link rel="stylesheet" href="styles/vendor.css">
+
+  <link rel="stylesheet" href="styles/main.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="scripts/vendor/modernizr.js"></script>
+</head>
+<body>
+
+  <!--/////////////// Application Outlet //////////////////-->
+  <script type="text/x-handlebars" data-template-name="application">
+   {{outlet}}
+  </script>
+
+  <!--/////////////// Landing Page //////////////////-->
+  <script type="text/x-handlebars" data-template-name="index">
+    <div class="index-page"> 
+      <div class="index-header">
+        <img src="images/BM_Logo.png" alt="">
+        <section class="log-in">
+          <p>Create, save, edit and share your favorite recipes!</p>
+          <div class="modal">
+            <label for="modal-1">
+              <div class="modal-trigger">Log In</div>
+            </label>
+            <input class="modal-state" id="modal-1" type="checkbox" />
+            <div class="modal-window">
+              <div class="modal-inner">
+                <label class="modal-close" for="modal-1"></label>
+                <div class="login">
+                  <h1>Log In</h1>
+                  <form class="modal-content">
+                    {{input type="email" value=email placeholder="email"}}
+                    {{input type="password" value=password placeholder="password"}}
+                    <button {{action "login"}}>Login</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="sign-up">
+          <form>
+            <h2>Sign Up</h2>
+            {{input type="text" value=username placeholder="username"}}
+            {{input type="email" value=email placeholder="email"}}
+            {{input type="password" value=password placeholder="password"}}
+            <button {{action "signup"}}>Sign Up</button>
+          </form>
+        </section>        
+      </div>
+    </div>  
+  </script>
+  
+  <!--///////////////// Main Page /////////////////-->
+  <script type="text/x-handlebars" data-template-name="recipes">
+    <header>
+      <div class="header-left">
+        <h4>The kitchen is yours, chef!</h4>
+      </div>
+      <div class="header-middle">
+        {{#link-to 'recipes'}}<img src="images/BM_Logo.png" alt="">{{/link-to}}
+      </div>
+      <div class="header-right">
+        <ul>
+          <li>{{#link-to 'recipes.new'}}<i class="fa fa-plus fa-2x"></i>{{/link-to}}</li>
+          <li>{{#link-to 'recipes.my'}}<i class="fa fa-user fa-2x"></i>{{/link-to}}</li>
+          <li {{action "logout"}}><i class="fa fa-sign-out fa-2x"></i></li>
+        </ul>
+      </div>
+    </header> 
+    <section class="side-nav">
+      <ul>
+        <li>{{#link-to 'recipes.my'}}My Recipes{{/link-to}}</li>
+        <li>{{#link-to 'recipes.public'}}Public Recipes{{/link-to}}</li>
+        <li>{{#link-to 'recipes.popular'}}Popular Recipes{{/link-to}}</li>
+        <li>{{#link-to 'recipes.favorites'}}My Favorite Recipes{{/link-to}}</li>
+        <li>{{#link-to 'recipes.pantry'}}My Pantry{{/link-to}}</li>
+      </ul>
+    </section>
+    <div class="main-content">
+      {{outlet}}
+    </div>
+  </script>
+    
+  <!--/////////////// Index /////////////////-->
+  <script type="text/x-handlebars" data-template-name="recipes/index">
+    <section class="recipes">
+      <h4>My Recipes</h4>
+      <div class="line"></div>
+      <span>{{#link-to 'recipes.my'}}view all <i class="fa fa-angle-right fa-1x"></i>{{/link-to}}</span>
+      <ul>
+        <li>{{#link-to 'recipes.new'}}
+          <i class="fa fa-plus fa-3x"></i>
+          <span>Add Recipe</span>
+          {{/link-to}}
+        </li>
+        {{#each myRecipes}}
+          <li>
+          {{#link-to "recipes.recipe" id}}
+            <img {{bind-attr src=imgURL}}>
+            <h4>{{name}}</h4>
+            {{/link-to}}
+          </li>      
+        {{/each}}
+      </ul>
+    </section>
+    <section class="recipes">
+      <h4>Public Recipes</h4>
+      <div class="line"></div>
+      <span>{{#link-to 'recipes.public'}}view all <i class="fa fa-angle-right fa-1x"></i>{{/link-to}}</span>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>
+    <section class="recipes">
+      <h4>Popular Recipes</h4>
+      <div class="line"></div>
+      <span>{{#link-to 'recipes.popular'}}view all <i class="fa fa-angle-right fa-1x"></i>{{/link-to}}</span>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>
+    <section class="recipes">
+      <h4>My Favorite Recipes</h4>
+      <div class="line"></div>
+      <span>{{#link-to 'recipes.favorites'}}view all <i class="fa fa-angle-right fa-1x"></i>{{/link-to}}</span>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>
+    <section class="recipes">
+      <h4>My Pantry</h4>
+      <div class="line"></div>
+      <span>{{#link-to 'recipes.pantry'}}view all <i class="fa fa-angle-right fa-1x"></i>{{/link-to}}</span>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>   
+  </script>
+
+  <!--///////////// Create Recipe //////////////////-->
+  <script type="text/x-handlebars" data-template-name="recipes/new">
+    <form class="new-recipe">
+      <section class="basic-info">
+        <h3>Basic Info</h3>
+        <div class="line"></div>
+        <div class="add-photo">
+          {{#if imgURL}}
+            <img {{bind-attr src=imgURL}}/>
+            <button class="img-overlay" {{action "addPic"}}><i class="fa fa-plus"></i>Change Photo</button>
+          {{else}}
+            <button {{action "addPic"}}><i class="fa fa-plus"></i>Add Photo</button>
+          {{/if}}
+        </div>
+        <div class="recipe-name">
+          {{input type="text" placeholder="Recipe Name" value=name}}
+          {{input type="text" placeholder="By" value=author.username disabled="true"}}
+          {{input type="checkbox" checked=isPublic name="is-public"}}
+          <label name="is-public">Make it public</label>
+        </div>
+        <div class="cooking-times">
+          {{view Ember.Select content=recipeType value=selectedRecipeType prompt="Recipe Type" class="recipe-type"}}
+          {{input type="text" placeholder="Prep Time" value=prepTime}}
+          {{view Ember.Select content=timeUnit value=selectedPrepTimeUnit}}
+          {{input type="text" placeholder="Cook Time" value=cookTime}}
+          {{view Ember.Select content=timeUnit value=selectedCookTimeUnit}}
+          {{input type="text" placeholder="Cook Temp" value=cookTemp}}
+          {{view Ember.Select content=tempUnit value=selectedCookTempUnit}}
+        </div>
+        <div class="yield">
+          <span>This recipe will make</span>
+          {{input type="text" value=yieldCount placeholder="yield count"}}
+          {{input type="text" value=yieldUnit placeholder="cookies, loaves, etc"}}
+        </div>
+      </section>
+      <section class="steps">
+        <h3>Steps</h3>
+        <div class="line"></div>
+        <div class="step">
+          {{#each steps itemController="step"}}
+            <h3>Step {{stepNum}}</h3>
+            {{#if isEditing}}
+              {{textarea placeholder="What directions go with this step?" value=description}}
+              <input type="submit" value="Save this step" {{action "saveStep"}}>
+            {{else}}
+              <p>
+                {{description}}
+                <input type="submit" value="Edit this step" {{action "editStep"}}>
+              </p>
+            {{/if}}
+          {{/each}}
+        </div>
+        <input type="submit" value="Add a step" {{action "addStep"}}>
+      </section>
+      <section>
+        <h3>Personal Notes</h3>
+        <div class="line"></div>
+        {{textarea value=notes}}
+      </section>
+      <input type="submit" value="Save this Recipe!" {{action "saveRecipe"}}>
+    </form>
+  </script>
+
+  <!--///////////// View Recipe //////////////////-->
+  <script type="text/x-handlebars" data-template-name="recipes/recipe">
+    <div class="recipe">
+      <header>
+        <h2>{{name}}</h2>
+        <p>by {{author.username}}</p>
+        <img {{bind-attr src=imgURL}} />
+      </header>
+      <section class="details">
+        <div>
+          <label>Recipe Type</label>
+          <span>{{recipeType}}</span>
+        </div>
+        <div>
+          <label>Prep Time</label>
+          <span>{{prepTime}}{{prepTimeUnit}}</span>
+        </div>
+        <div>
+          <label>Cook Time</label>
+          <span>{{cookTime}}{{cookTimeUnit}}</span>
+        </div>
+        <div>
+          <label>Cook Temp</label>
+          <span>{{cookTemp}}&deg;{{cookTempUnit}}</span>
+        </div>
+      </section>
+      <section class="yield-steps">
+        <p>{{yieldCount}} {{yieldUnit}}</p>
+      </section>
+      <section class="steps-info">
+        <ul>
+          {{#each steps}}
+            <li>
+              <h2>Step {{stepNum}}</h2>
+              <div class="line"></div>
+              <p>{{description}}</p>                          
+            </li>
+          {{/each}}
+        </ul>
+      </section>
+      <section class="notes">
+        <h2>Personal Notes</h2>
+        <div class="line"></div>
+        <p>{{notes}}</p>
+      </section>
+      {{#if isAuthor}}
+        <section class="edit">
+          <button>{{#link-to "recipes.edit" id}}Edit this recipe{{/link-to}}</button>
+        </section>
+      {{/if}}
+    </div>
+  </script>
+  
+  <!--///////////// Edit Recipe //////////////////-->
+  <script type="text/x-handlebars" data-template-name="recipes/edit">
+    <form class="new-recipe">
+      <section class="basic-info">
+        <h3>Basic Info</h3>
+        <div class="line"></div>
+        <div class="add-photo">
+          {{#if imgURL}}
+            <img {{bind-attr src=imgURL}}/>
+            <button class="img-overlay" {{action "addPic"}}><i class="fa fa-plus"></i>Change Photo</button>
+          {{else}}
+            <button {{action "addPic"}}><i class="fa fa-plus"></i>Add Photo</button>
+          {{/if}}
+        </div>
+        <div class="recipe-name">
+          {{input type="text" placeholder="Recipe Name" value=name}}
+          {{input type="text" placeholder="By" value=author.username disabled="true"}}
+          {{input type="checkbox" checked=isPublic name="is-public"}}
+          <label name="is-public">Make it public</label>
+        </div>
+        <div class="cooking-times">
+          {{view Ember.Select content=recipeTypes value=recipeType prompt="Recipe Type" class="recipe-type"}}
+          {{input type="text" placeholder="Prep Time" value=prepTime}}
+          {{view Ember.Select content=timeUnits value=prepTimeUnit}}
+          {{input type="text" placeholder="Cook Time" value=cookTime}}
+          {{view Ember.Select content=timeUnits value=cookTimeUnit}}
+          {{input type="text" placeholder="Cook Temp" value=cookTemp}}
+          {{view Ember.Select content=tempUnits value=tempUnit}}
+        </div>
+        <div class="yield">
+          <span>This recipe will make</span>
+          {{input type="text" value=yieldCount placeholder="yield count"}}
+          {{input type="text" value=yieldUnit placeholder="cookies, loaves, etc"}}
+        </div>
+      </section>
+      <section class="steps">
+        <h3>Steps</h3>
+        <div class="line"></div>
+        <div class="step">
+          {{#each steps itemController="stepEdit"}}
+            <h3>Step {{stepNum}}</h3>
+            {{#if isEditing}}
+              {{textarea placeholder="What directions go with this step?" value=description}}
+              <input type="submit" value="Save this step" {{action "saveStep"}}>
+            {{else}}
+              <p>
+                {{description}}
+                <input type="submit" value="Edit this step" {{action "editStep"}}>
+              </p>
+            {{/if}}
+          {{/each}}
+        </div>
+        <input type="submit" value="Add a step" {{action "addStep"}}>
+      </section>
+      <section>
+        <h3>Personal Notes</h3>
+        <div class="line"></div>
+        {{textarea value=notes}}
+      </section>
+      <input type="submit" value="Save this Recipe!" {{action "saveRecipe"}}>
+    </form>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="recipes/my">
+    <section class="recipes">
+      <h4>My Recipes</h4>
+      <div class="line"></div>
+      <ul>
+        {{#each myRecipes}}
+          <li>
+          {{#link-to "recipes.recipe" id}}
+            <img {{bind-attr src=imgURL}}>
+            <h4>{{name}}</h4>
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  </script>
+
+  <!-- Public -->
+  <script type="text/x-handlebars" data-template-name="recipes/public">
+    <section class="recipes">
+      <h4>Public Recipes</h4>
+      <div class="line"></div>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>
+  </script>
+
+  <!-- Popular -->
+  <script type="text/x-handlebars" data-template-name="recipes/popular">
+    <section class="recipes">
+      <h4>Popular Recipes</h4>
+      <div class="line"></div>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>
+  </script>
+
+  <!-- Favorites -->
+  <script type="text/x-handlebars" data-template-name="recipes/favorites">
+    <section class="recipes">
+      <h4>My Favorite Recipes</h4>
+      <div class="line"></div>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>
+  </script>
+
+  <!-- Pantry -->
+  <script type="text/x-handlebars" data-template-name="recipes/pantry">
+    <section class="recipes">
+      <h4>My Pantry</h4>
+      <div class="line"></div>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>
+  </script>
+  
+  
+    
+ 
+    <script src="scripts/vendor.js"></script>
+
+        <script src="scripts/main.js"></script>
+</body>
+</html>

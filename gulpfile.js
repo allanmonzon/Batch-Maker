@@ -1,5 +1,5 @@
 'use strict';
-// generated on 2014-10-13 using generator-tiy-webapp 0.0.8
+// generated on 2015-02-02 using generator-tiy-webapp 0.0.10
 
 // Require your modules
 var gulp = require('gulp');
@@ -7,6 +7,7 @@ var $ = require('gulp-load-plugins')();
 var rimraf = require('rimraf');
 var exec = require('child_process').exec;
 var prompt = require('gulp-prompt');
+var useref = require('gulp-useref');
 
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
@@ -20,22 +21,28 @@ gulp.task('styles', function () {
 });
 
 gulp.task('html', ['styles'], function () {
+  var assets = useref.assets();
 
   return gulp.src('app/*.html')
-    .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
+    .pipe(assets)
     .pipe($.if('*.css', $.csso()))
-    .pipe($.useref.restore())
-    .pipe($.useref())
+    .pipe(assets.restore())
+    .pipe(useref())
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+    .pipe($.imagemin({
       progressive: true,
       interlaced: true
-    })))
+    }))
     .pipe(gulp.dest('dist/images'));
+});
+
+gulp.task('fonts', function () {
+  return gulp.src('app/fonts/**/*')
+    .pipe(gulp.dest('dist/fonts'));
 });
 
 gulp.task('extras', function () {
@@ -44,8 +51,10 @@ gulp.task('extras', function () {
 });
 
 gulp.task('clean', function (cb) {
-  rimraf('.tmp', function () {
-    rimraf('dist', cb);
+  return $.cache.clearAll(cb, function() {
+    return rimraf('.tmp', function () {
+      return rimraf('dist', cb);
+    });
   });
 });
 
@@ -101,7 +110,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
   gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('build', ['html', 'images', 'extras'], function () {
+gulp.task('build', ['html', 'images', 'fonts', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
