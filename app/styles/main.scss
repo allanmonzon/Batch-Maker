@@ -33,7 +33,7 @@ li {
 //=============== Landing Page =================//
 .index-page {
   @include fill-parent;
-  @include background-image(linear-gradient(to top, rgba(125, 125, 125, .5) 1%, rgba(125, 125, 125, .5) 102%, #fff), url("/images/batch.jpg"));
+  @include background-image(linear-gradient(to top, rgba(125, 125, 125, .5) 1%, rgba(125, 125, 125, .5) 102%, #fff), url("../images/batch.jpg"));
   background-size: cover;
   height: 100vh;
   color: $light-color;
