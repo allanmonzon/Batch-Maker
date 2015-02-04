@@ -40,7 +40,7 @@ Batch.RecipesController = Ember.Controller.extend({
   actions: {
     logout: function() {
       this.set('currentUser', '');
-      localStorage.removeItem('batchAuth');
+      localStorage.removeItem('batch-firebase-token');
       Batch.ref.unauth();
       this.transitionToRoute('index');
     }

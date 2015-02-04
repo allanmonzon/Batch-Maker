@@ -13,7 +13,7 @@ Batch.ApplicationController = Ember.Controller.extend({
   configureSession: function(authData) {
     var self = this;
     return new Ember.RSVP.Promise(function(resolve, reject){
-      localStorage.setItem('userAuth', authData.token);
+      localStorage.setItem('batch-firebase-token', authData.token);
       self.store.find('user', authData.uid).then(function(user){
         self.set('currentUser', user);
         resolve(user);

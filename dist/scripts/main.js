@@ -1,29 +1,32 @@
-window.Batch = Ember.Application.create({
-	LOG_TRANSITIONS: true
-});
+(function(){
+  'use strict';
 
-Batch.ref = new Firebase("https://batch-maker-1.firebaseio.com");
+  window.Batch = Ember.Application.create({
+  	LOG_TRANSITIONS: true
+  });
 
-Batch.ApplicationAdapter = DS.FirebaseAdapter.extend({
-  firebase: Batch.ref
-});
+  Batch.ref = new Firebase("https://batch-maker-1.firebaseio.com");
+
+  Batch.ApplicationAdapter = DS.FirebaseAdapter.extend({
+    firebase: Batch.ref
+  });
 
 
-Batch.initializer({
-  name: 'firebase-session',
+  Batch.initializer({
+    name: 'firebase-session',
 
-  initialize: function(container, application){
-    application.deferReadiness();
-    var token = localStorage.getItem('userAuth');
-    if (token) {
-      var session = container.lookup('controller:application');
-      session.authWithToken(token).then(function(){
-        application.advanceReadiness();
-      });
-    } else {application.advanceReadiness();}
-  }
-});
-
+    initialize: function(container, application){
+      application.deferReadiness();
+      var token = localStorage.getItem('batch-firebase-token');
+      if (token) {
+        var session = container.lookup('controller:application');
+        session.authWithToken(token).then(function(){
+          application.advanceReadiness();
+        });
+      } else {application.advanceReadiness();}
+    }
+  });
+})();
 Batch.Router.map(function() {
 	this.resource('recipes', function(){
 		this.route('new');
@@ -159,7 +162,7 @@ Batch.ApplicationController = Ember.Controller.extend({
   configureSession: function(authData) {
     var self = this;
     return new Ember.RSVP.Promise(function(resolve, reject){
-      localStorage.setItem('userAuth', authData.token);
+      localStorage.setItem('batch-firebase-token', authData.token);
       self.store.find('user', authData.uid).then(function(user){
         self.set('currentUser', user);
         resolve(user);
@@ -224,7 +227,7 @@ Batch.RecipesController = Ember.Controller.extend({
   actions: {
     logout: function() {
       this.set('currentUser', '');
-      localStorage.removeItem('batchAuth');
+      localStorage.removeItem('batch-firebase-token');
       Batch.ref.unauth();
       this.transitionToRoute('index');
     }
