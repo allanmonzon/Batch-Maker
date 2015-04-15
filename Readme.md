@@ -1,3 +1,3 @@
-## Yo, I'm a Readme
+## Batch-Maker
 
-You should probably update me so people looking at your code have an idea what it is being used for :)
+An Ember.js app that lets you create recipes.
